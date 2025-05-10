@@ -1,6 +1,6 @@
 {
   "name": "@localnerve/debug",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by debug-js/debug API.",
   "author": "Willy Brauner",
   "maintainers": [{
@@ -20,7 +20,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/willybrauner/debug.git"
+    "url": "https://github.com/localnerve/debug.git"
   },
   "keywords": [
     "debug",
