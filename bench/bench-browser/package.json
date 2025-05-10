@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@wbe/debug": "workspace:*",
+    "@localnerve/debug": "latest",
     "debug": "4.4.0",
     "preact": "^10.26.5"
   },
   "devDependencies": {
-    "sass": "^1.86.3",
-    "typescript": "~5.7.2",
-    "vite": "^6.2.0"
+    "sass": "^1.87.0",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
   }
 }

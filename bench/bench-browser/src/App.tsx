@@ -1,6 +1,6 @@
 import { useState, useEffect } from "preact/hooks"
 import debugOriginal from "debug"
-import debugWbe from "@wbe/debug"
+import debugWbe from "@localnerve/debug"
 
 interface BenchmarkResults {
   debugOriginal: number

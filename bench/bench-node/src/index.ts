@@ -1,5 +1,5 @@
 import debugOriginal from "debug"
-import debugWbe from "@wbe/debug"
+import debugWbe from "@localnerve/debug"
 import chalk from "chalk"
 
 // Enable logs for both libraries but redirect to null

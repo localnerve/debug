@@ -5,3 +5,4 @@ tsconfig.tsbuildinfo
 .cache
 .parcel-cache
 dist
+tmp

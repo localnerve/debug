@@ -1,5 +1,5 @@
 import debug from "debug"
-import debugWbe from "@wbe/debug"
+import debugWbe from "@localnerve/debug"
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 

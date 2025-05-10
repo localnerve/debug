@@ -1,4 +1,4 @@
-# @wbe/debug
+# @localnerve/debug
 
 Tiny debug tool (~600 bytes) for terminal and browser inspired by [debug-js/debug](https://github.com/debug-js/debug) API.
 
@@ -12,13 +12,13 @@ Tiny debug tool (~600 bytes) for terminal and browser inspired by [debug-js/debu
 
 ## Motivation
 
-`@wbe/debug` was built in order to be as light as possible for terminal and browser,
-as the same way as the great debug-js/debug tool.
+Forked from `@wbe/debug`, this was built in order to be as light as possible for terminal and browser,
+as the same way as the great debug-js/debug tool, with a few added debug-js/debug parity features.
 
 ## Installation
 
 ```shell script
-$ npm i @wbe/debug
+$ npm i @localnerve/debug
 ```
 
 ## debug node
@@ -30,7 +30,7 @@ DEBUG=* node file.js
 file.js:
 
 ```js
-import debug from "@wbe/debug"
+import debug from "@localnerve/debug"
 const log = debug("namespace")
 log("hello") // "namespace hello"
 ```
@@ -44,7 +44,7 @@ DEBUG=namespace-1 node file.js
 Only debug function declaration with `namespace-1` declared as namespace will be printed in the console:
 
 ```js
-import debug from "@wbe/debug"
+import debug from "@localnerve/debug"
 const log = debug("namespace-1")
 log("hello") // "namespace-1 hello"
 ```
@@ -72,7 +72,7 @@ Use debug in javascript:
 
 ```js
 // es6 import
-import debug from "@wbe/debug"
+import debug from "@localnerve/debug"
 const log = debug("foo")
 log("bar") // "foo bar"
 ```
@@ -80,10 +80,6 @@ log("bar") // "foo bar"
 ## Examples
 
 Install dependencies:
-
-```shell
-pnpm i
-```
 
 Start example:
 

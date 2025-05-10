@@ -1,8 +1,13 @@
 {
-  "name": "@wbe/debug",
-  "version": "3.1.0",
+  "name": "@localnerve/debug",
+  "version": "1.0.0",
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by debug-js/debug API.",
   "author": "Willy Brauner",
+  "maintainers": [{
+    "email": "alex@localnerve.com",
+    "name": "Alex Grant",
+    "url": "https://localnerve.com"
+  }],
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -33,9 +38,9 @@
     "build": "tsup",
     "build:watch": "tsup --watch --sourcemap",
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
-    "dev:example-browser": "pnpm --filter ./examples/browser run dev",
+    "dev:example-browser": "cd examples/browser && npm i && npm run build && npm run dev",
     "dev:example-node": "DEBUG=* node examples/node/index.js",
-    "pre-publish": "npm run build && npm run test",
+    "pre-publish": "npm run build && npm test",
     "test:watch": "vitest",
     "test": "vitest --run",
     "ncu": "find . -name 'node_modules' -prune -o -name 'package.json' -execdir ncu -u ';'",
@@ -55,10 +60,9 @@
   },
   "size-limit": [
     {
-      "name": "@wbe/debug",
+      "name": "@localnerve/debug",
       "path": "dist/index.js",
       "limit": "650 B"
     }
-  ],
-  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387"
+  ]
 }

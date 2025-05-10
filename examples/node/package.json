@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "DEBUG=namespace:*,otherspace node index.js"
   },
   "dependencies": {
-    "@wbe/debug": "workspace:*"
+    "@localnerve/debug": "latest"
   }
 }
