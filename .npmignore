@@ -4,10 +4,13 @@
 node_modules
 src
 test
+tmp
 stories
-example
+examples
+bench
 .babelrc
 .github
 .prettierrc
 screen.jpg
 tsconfig.json
+tsup.config.ts
