@@ -2,11 +2,10 @@
 
 Tiny debug tool (~600 bytes) for terminal and browser inspired by [debug-js/debug](https://github.com/debug-js/debug) API.
 
-![](https://img.shields.io/npm/v/@wbe/debug/latest.svg)
-![](https://github.com/willybrauner/debug/workflows/CI/badge.svg)
-![](https://img.shields.io/bundlephobia/minzip/@wbe/debug.svg)
-![](https://img.shields.io/npm/dt/@wbe/debug.svg)
-![](https://img.shields.io/npm/l/@wbe/debug.svg)
+![](https://img.shields.io/npm/v/@localnerve/debug/latest.svg)
+![](https://github.com/localnerve/debug/workflows/ci/badge.svg)
+![](https://img.shields.io/npm/dt/@localnerve/debug.svg)
+![](https://img.shields.io/npm/l/@localnerve/debug.svg)
 
 ![](screen.jpg)
 
@@ -14,6 +13,7 @@ Tiny debug tool (~600 bytes) for terminal and browser inspired by [debug-js/debu
 
 Forked from `@wbe/debug`, this was built in order to be as light as possible for terminal and browser,
 as the same way as the great debug-js/debug tool, with a few added debug-js/debug parity features.
+The package is less than 10k unpacked on disk, and published directly from Github with provenance.
 
 ## Installation
 
