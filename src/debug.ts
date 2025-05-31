@@ -17,13 +17,17 @@ export const debug = (namespace?: string, elapsedTime = true) => {
 
   // Define when to show the log
   const showLog = (value: string): boolean => {
-    const debugSpecs = value?.split(",");
-    return debugSpecs?.some(spec => {
-      const split = spec.split(/(\:\*)|(?:\*)/)
-      const fragment = split[0]
-      const fragmentStop = split[1] ? ":" : ""
-      return value==="*" || namespace.startsWith(`${fragment}${fragmentStop}`)
-    });
+    return value
+      ?.split(",")
+      .map((s) => s.trim())
+      ?.some((spec) => {
+        if (spec === "*") return true
+        if (spec.endsWith("*")) {
+          const prefix = spec.slice(0, -1)
+          return namespace.startsWith(prefix)
+        }
+        return namespace === spec
+      })
   }
 
   return (...rest: any[]): void => {
