@@ -95,4 +95,53 @@ describe("debug", () => {
     testDebug("Should not log")
     expect(consoleLogCalls.length).toBe(0)
   })
+
+  it("should handle multiple debug namespaces with various patterns", () => {
+    process.env.DEBUG = "exact,prefix*,namespace:*,exclude-me"
+
+    // prettier-ignore
+    const testCases = [
+      // Exact matches
+      { logger: "exact", message: "exact match", shouldLog: true },
+      { logger: "exact-extended", message: "extended exact", shouldLog: false },
+
+      // Prefix wildcard matches
+      { logger: "prefix", message: "prefix base", shouldLog: true },
+      { logger: "prefixOne", message: "prefix extended", shouldLog: true },
+      { logger: "prefix-two-deep", message: "prefix deep", shouldLog: true },
+      { logger: "not-prefix", message: "different prefix", shouldLog: false },
+
+      // Namespace colon wildcard matches
+      { logger: "namespace:sub", message: "namespace sub", shouldLog: true },
+      { logger: "namespace:deep:nested", message: "namespace deep", shouldLog: true },
+      { logger: "nameSpace:deep:nested", message: "namespace deep", shouldLog: false },
+      { logger: "namespace", message: "namespace only", shouldLog: false },
+      { logger: "other:sub", message: "other namespace", shouldLog: false },
+
+      // Exact exclude pattern
+      { logger: "exclude-me", message: "should be excluded", shouldLog: true },
+      { logger: "exclude-me-not", message: "should not match", shouldLog: false },
+    ]
+
+    // Create loggers and execute
+    const results: Array<{ namespace: string; message: string }> = []
+
+    testCases.forEach(({ logger, message }) => {
+      const debugLogger = debug(logger)
+      debugLogger(message)
+
+      if (testCases.find((tc) => tc.logger === logger)?.shouldLog) {
+        results.push({ namespace: logger, message })
+      }
+    })
+
+    // Verify expected logs were created
+    const expectedLogs = testCases.filter((tc) => tc.shouldLog)
+    expect(consoleLogCalls.length).toBe(expectedLogs.length)
+
+    expectedLogs.forEach((expected, index) => {
+      expect(consoleLogCalls[index][0]).toContain(expected.logger)
+      expect(consoleLogCalls[index][1]).toBe(expected.message)
+    })
+  })
 })
