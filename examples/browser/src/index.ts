@@ -37,7 +37,7 @@ const test = async (lib) => {
   }
 }
 
-for (let lib of ["debug-js/debug", "@wbe/debug"]) {
+for (let lib of ["debug-js/debug", "@localnerve/debug"]) {
   console.log(
     `---------------------------------------------------  ${lib} ---------------------------------------------------`
   )

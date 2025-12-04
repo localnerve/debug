@@ -1,6 +1,6 @@
 {
   "name": "@localnerve/debug",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by debug-js/debug API.",
   "author": "Willy Brauner",
   "maintainers": [{
@@ -42,7 +42,7 @@
     "build:watch": "tsup --watch --sourcemap",
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
     "dev:example-browser": "cd examples/browser && npm i && npm run build && npm run dev",
-    "dev:example-node": "DEBUG=* node examples/node/index.js",
+    "dev:example-node": "cd examples/node && npm i && DEBUG=* node index.js && cd -",
     "pre-publish": "npm run build && npm test",
     "test:watch": "vitest",
     "test": "vitest --run",
@@ -50,13 +50,13 @@
     "size": "size-limit"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^11.2.0",
-    "@types/node": "^24.10.0",
-    "size-limit": "^11.2.0",
-    "terser": "^5.44.0",
-    "tsup": "^8.5.0",
+    "@size-limit/preset-small-lib": "^12.0.0",
+    "@types/node": "^24.10.1",
+    "size-limit": "^12.0.0",
+    "terser": "^5.44.1",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.7"
+    "vitest": "^4.0.15"
   },
   "prettier": {
     "semi": false
@@ -65,7 +65,7 @@
     {
       "name": "@localnerve/debug",
       "path": "dist/index.js",
-      "limit": "650 B"
+      "limit": "655 B"
     }
   ]
 }

@@ -6,6 +6,7 @@ export default defineConfig({
   splitting: false,
   clean: true,
   dts: true,
+  target: "es2020",
   format: ["esm"],
   name: "debug",
   minify: "terser",
@@ -13,7 +14,7 @@ export default defineConfig({
     compress: true,
   },
   async onSuccess() {
-    const process = spawn("npx", ["size-limit"], { shell: true })
+    const process = spawn("npm", ["run", "size"], { shell: true })
     process.stdout.on("data", (data) => console.log(data.toString()))
   },
 })
