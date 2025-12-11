@@ -1,6 +1,6 @@
 {
   "name": "@localnerve/debug",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by debug-js/debug API.",
   "author": "Willy Brauner",
   "maintainers": [{
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^12.0.0",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.0",
     "size-limit": "^12.0.0",
     "terser": "^5.44.1",
     "tsup": "^8.5.1",
