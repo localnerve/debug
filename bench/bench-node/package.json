@@ -8,12 +8,12 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@localnerve/debug": "workspace:*",
-    "debug": "4.4.0",
-    "chalk": "^5.4.1"
+    "@localnerve/debug": "file:../..",
+    "debug": "4.4.3"
   },
   "devDependencies": {
-    "typescript": "~5.8.3",
-    "tsx": "^4.19.4"
+    "@types/debug": "^4.1.13",
+    "tsx": "^4.22.4",
+    "typescript": "~6.0.3"
   }
 }

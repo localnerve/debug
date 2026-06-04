@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@localnerve/debug": "latest",
-    "debug": "4.4.0",
-    "preact": "^10.26.5"
+    "@localnerve/debug": "file:../..",
+    "debug": "4.4.3",
+    "preact": "^10.29.2"
   },
   "devDependencies": {
-    "sass": "^1.87.0",
-    "typescript": "~5.8.3",
-    "vite": "^6.3.5"
+    "sass": "^1.100.0",
+    "typescript": "~6.0.3",
+    "vite": "^8.0.16"
   }
 }

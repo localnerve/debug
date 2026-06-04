@@ -37,6 +37,9 @@ export const BenchmarkApp = () => {
       debugWbe: 0,
     }
 
+    // Set debugOriginal manually
+    debugOriginal.enable(localStorage.getItem("debug"));
+
     // Create loggers for each library
     const logOriginal = debugOriginal("bench:original")
     const logWbe = debugWbe("bench:wbe")
