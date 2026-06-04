@@ -1,4 +1,4 @@
-import { ansiRgb, isBrowser, stringToRgb } from "./helpers"
+import { ansiRgb, isBrowser, stringToRgb } from "./helpers.ts"
 
 // Store timers per namespace instead of using a global timer
 let TIMERS: Record<string, number> = {}

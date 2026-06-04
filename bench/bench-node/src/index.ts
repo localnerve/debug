@@ -1,17 +1,24 @@
+import { styleText } from "node:util"
 import debugOriginal from "debug"
 import debugWbe from "@localnerve/debug"
-import chalk from "chalk"
 
 // Enable logs for both libraries but redirect to null
 // This allows the libraries to run their code paths but without the I/O overhead
+// UPDATE: This actually only works on debugWbe, debug original's env is cached and we have to set it manually.
 process.env.DEBUG = "*"
 
 // Redirect console output during benchmarking
 const originalConsoleLog = console.log
+let originalStderrWrite = process.stderr.write
+
 const disableConsoleOutput = () => {
+  // Silence both standard error and standard output safely
+  process.stderr.write = () => true as any
   console.log = () => {}
 }
+
 const restoreConsoleOutput = () => {
+  process.stderr.write = originalStderrWrite
   console.log = originalConsoleLog
 }
 
@@ -53,7 +60,10 @@ class Benchmark {
    * Run warmup phase to initialize both libraries
    */
   private warmup(): void {
-    console.log(chalk.dim("Warming up..."))
+    console.log(styleText("dim", "Warming up..."))
+
+    // manually set debug original
+    debugOriginal.enable(process.env.DEBUG ?? '');
 
     const logOriginal = debugOriginal("bench:original:warmup")
     const logWbe = debugWbe("bench:wbe:warmup")
@@ -71,8 +81,8 @@ class Benchmark {
    */
   private benchmarkOriginal(): void {
     console.log(
-      chalk.blue.bold(
-        `\nBenchmarking ${chalk.underline("original debug")} library...`
+      styleText(["blue", "bold"],
+        `\nBenchmarking ${styleText("underline", "original debug")} library...`
       )
     )
 
@@ -97,8 +107,8 @@ class Benchmark {
    */
   private benchmarkWbe(): void {
     console.log(
-      chalk.green.bold(
-        `\nBenchmarking ${chalk.underline("@wbe/debug")} library...`
+      styleText(["green", "bold"],
+        `\nBenchmarking ${styleText("underline", "@wbe/debug")} library...`
       )
     )
 
@@ -122,19 +132,19 @@ class Benchmark {
    * Display the benchmark results
    */
   private displayResults(): void {
-    console.log("\n" + chalk.yellow.bold("=".repeat(50)))
-    console.log(chalk.yellow.bold("           BENCHMARK RESULTS"))
-    console.log(chalk.yellow.bold("=".repeat(50)) + "\n")
+    console.log("\n" + styleText(["yellow", "bold"], "=".repeat(50)))
+    console.log(styleText(["yellow", "bold"], "          BENCHMARK RESULTS"))
+    console.log(styleText(["yellow", "bold"], "=".repeat(50)) + "\n")
 
     const { debugOriginal, debugWbe } = this.results
 
     console.log(
-      `Total iterations per library: ${chalk.bold(
+      `Total iterations per library: ${styleText("bold",
         formatNumber(this.iterations)
       )}`
     )
     console.log(
-      `Test messages: ${chalk.dim(JSON.stringify(this.testMessages))}\n`
+      `Test messages: ${styleText("dim", JSON.stringify(this.testMessages))}\n`
     )
 
     // Calculate per-operation times
@@ -142,35 +152,35 @@ class Benchmark {
     const wbePerOp = debugWbe / this.iterations
 
     // Display the results for the original debug library
-    console.log(chalk.blue.bold("Original debug:"))
-    console.log(`  Total time: ${chalk.bold(debugOriginal.toFixed(2) + " ms")}`)
+    console.log(styleText(["blue", "bold"], "Original debug:"))
+    console.log(`  Total time: ${styleText("bold", (debugOriginal.toFixed(2) + " ms"))}`)
     console.log(
-      `  Per operation: ${chalk.bold(originalPerOp.toFixed(6) + " ms")}\n`
+      `  Per operation: ${styleText("bold", originalPerOp.toFixed(6) + " ms")}\n`
     )
 
     // Display the results for @wbe/debug
-    console.log(chalk.green.bold("@wbe/debug:"))
-    console.log(`  Total time: ${chalk.bold(debugWbe.toFixed(2) + " ms")}`)
-    console.log(`  Per operation: ${chalk.bold(wbePerOp.toFixed(6) + " ms")}\n`)
+    console.log(styleText(["green", "bold"], "@wbe/debug:"))
+    console.log(`  Total time: ${styleText("bold", debugWbe.toFixed(2) + " ms")}`)
+    console.log(`  Per operation: ${styleText("bold", wbePerOp.toFixed(6) + " ms")}\n`)
 
     // Display the difference
     const diff = debugWbe - debugOriginal
     console.log(
-      `Absolute difference: ${chalk.bold(Math.abs(diff).toFixed(2) + " ms")}`
+      `Absolute difference: ${styleText("bold", Math.abs(diff).toFixed(2) + " ms")}`
     )
 
     // Calculate which one is faster
     if (debugWbe < debugOriginal) {
       const percentFaster = ((debugOriginal / debugWbe - 1) * 100).toFixed(2)
       console.log(
-        chalk.green.bold(
+        styleText(["green", "bold"],
           `@wbe/debug is ${percentFaster}% faster than original debug`
         )
       )
     } else {
       const percentFaster = ((debugWbe / debugOriginal - 1) * 100).toFixed(2)
       console.log(
-        chalk.blue.bold(
+        styleText(["blue", "bold"],
           `Original debug is ${percentFaster}% faster than @wbe/debug`
         )
       )
@@ -194,19 +204,19 @@ class Benchmark {
     )
     const wbeBarLength = Math.round((debugWbe / maxTime) * maxBarLength)
 
-    console.log("\n" + chalk.yellow.bold("Performance Comparison:"))
+    console.log("\n" + styleText(["yellow", "bold"], "Performance Comparison:"))
 
     // Original debug bar
-    process.stdout.write(chalk.blue.bold("Original debug: "))
-    process.stdout.write(chalk.blue("█".repeat(originalBarLength)))
+    process.stdout.write(styleText(["blue", "bold"], "Original debug: "))
+    process.stdout.write(styleText("blue", "█".repeat(originalBarLength)))
     console.log(` ${debugOriginal.toFixed(2)} ms`)
 
     // @wbe/debug bar
-    process.stdout.write(chalk.green.bold("@wbe/debug:    "))
-    process.stdout.write(chalk.green("█".repeat(wbeBarLength)))
+    process.stdout.write(styleText(["green", "bold"], "@wbe/debug:     "))
+    process.stdout.write(styleText("green", "█".repeat(wbeBarLength)))
     console.log(` ${debugWbe.toFixed(2)} ms`)
 
-    console.log("\n" + chalk.yellow.bold("=".repeat(50)))
+    console.log("\n" + styleText(["yellow", "bold"], "=".repeat(50)))
   }
 
   /**
@@ -214,10 +224,10 @@ class Benchmark {
    */
   public async run(): Promise<void> {
     console.log(
-      chalk.bold("\n🚀 Starting Node.js benchmark: @wbe/debug vs debug")
+      styleText("bold", "\n🚀 Starting Node.js benchmark: @wbe/debug vs debug")
     )
     console.log(
-      chalk.dim(`Running with ${formatNumber(this.iterations)} iterations`)
+      styleText("dim", `Running with ${formatNumber(this.iterations)} iterations`)
     )
 
     // First warm up
