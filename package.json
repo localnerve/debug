@@ -1,13 +1,15 @@
 {
   "name": "@localnerve/debug",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by debug-js/debug API.",
   "author": "Willy Brauner",
-  "maintainers": [{
-    "email": "alex@localnerve.com",
-    "name": "Alex Grant",
-    "url": "https://localnerve.com"
-  }],
+  "maintainers": [
+    {
+      "email": "alex@localnerve.com",
+      "name": "Alex Grant",
+      "url": "https://localnerve.com"
+    }
+  ],
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -50,13 +52,13 @@
     "size": "size-limit"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^12.1.0",
-    "@types/node": "^25.9.1",
-    "size-limit": "^12.1.0",
-    "terser": "^5.48.0",
+    "@size-limit/preset-small-lib": "^13.0.3",
+    "@types/node": "^26.2.0",
+    "size-limit": "^13.0.3",
+    "terser": "^5.49.2",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.10"
   },
   "prettier": {
     "semi": false
@@ -67,5 +69,8 @@
       "path": "dist/index.js",
       "limit": "655 B"
     }
-  ]
+  ],
+  "allowScripts": {
+    "esbuild": true
+  }
 }
