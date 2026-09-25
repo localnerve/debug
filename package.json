@@ -1,6 +1,6 @@
 {
   "name": "@localnerve/debug",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by debug-js/debug API.",
   "author": "Willy Brauner",
   "maintainers": [
@@ -43,22 +43,21 @@
     "build": "tsup",
     "build:watch": "tsup --watch --sourcemap",
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
+    "lint": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
     "dev:example-browser": "cd examples/browser && npm i && npm run build && npm run dev",
     "dev:example-node": "cd examples/node && npm i && DEBUG=* node index.js && cd -",
     "pre-publish": "npm run build && npm test",
-    "test:watch": "vitest",
-    "test": "vitest --run",
+    "test": "node --test ./test/*.test.ts",
     "ncu": "find . -name 'node_modules' -prune -o -name 'package.json' -execdir ncu -u ';'",
     "size": "size-limit"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^13.0.3",
-    "@types/node": "^26.2.0",
-    "size-limit": "^13.0.3",
-    "terser": "^5.49.2",
+    "@size-limit/preset-small-lib": "^14.0.1",
+    "@types/node": "^26.6.2",
+    "size-limit": "^14.0.1",
+    "terser": "^5.51.2",
     "tsup": "^8.5.1",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.10"
+    "typescript": "^6.0.3"
   },
   "prettier": {
     "semi": false
