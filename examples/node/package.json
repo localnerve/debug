@@ -2,6 +2,7 @@
   "name": "node",
   "main": "index.js",
   "type": "module",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "DEBUG=namespace:*,otherspace node index.js"

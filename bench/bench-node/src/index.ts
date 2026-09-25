@@ -108,7 +108,7 @@ class Benchmark {
   private benchmarkWbe(): void {
     console.log(
       styleText(["green", "bold"],
-        `\nBenchmarking ${styleText("underline", "@wbe/debug")} library...`
+        `\nBenchmarking ${styleText("underline", "@localnerve/debug")} library...`
       )
     )
 
@@ -159,7 +159,7 @@ class Benchmark {
     )
 
     // Display the results for @wbe/debug
-    console.log(styleText(["green", "bold"], "@wbe/debug:"))
+    console.log(styleText(["green", "bold"], "@localnerve/debug:"))
     console.log(`  Total time: ${styleText("bold", debugWbe.toFixed(2) + " ms")}`)
     console.log(`  Per operation: ${styleText("bold", wbePerOp.toFixed(6) + " ms")}\n`)
 
@@ -174,14 +174,14 @@ class Benchmark {
       const percentFaster = ((debugOriginal / debugWbe - 1) * 100).toFixed(2)
       console.log(
         styleText(["green", "bold"],
-          `@wbe/debug is ${percentFaster}% faster than original debug`
+          `@localnerve/debug is ${percentFaster}% faster than original debug`
         )
       )
     } else {
       const percentFaster = ((debugWbe / debugOriginal - 1) * 100).toFixed(2)
       console.log(
         styleText(["blue", "bold"],
-          `Original debug is ${percentFaster}% faster than @wbe/debug`
+          `Original debug is ${percentFaster}% faster than @localnerve/debug`
         )
       )
     }
@@ -212,7 +212,7 @@ class Benchmark {
     console.log(` ${debugOriginal.toFixed(2)} ms`)
 
     // @wbe/debug bar
-    process.stdout.write(styleText(["green", "bold"], "@wbe/debug:     "))
+    process.stdout.write(styleText(["green", "bold"], "@localnerve/debug:     "))
     process.stdout.write(styleText("green", "█".repeat(wbeBarLength)))
     console.log(` ${debugWbe.toFixed(2)} ms`)
 
@@ -224,7 +224,7 @@ class Benchmark {
    */
   public async run(): Promise<void> {
     console.log(
-      styleText("bold", "\n🚀 Starting Node.js benchmark: @wbe/debug vs debug")
+      styleText("bold", "\n🚀 Starting Node.js benchmark: @localnerve/debug vs debug")
     )
     console.log(
       styleText("dim", `Running with ${formatNumber(this.iterations)} iterations`)
