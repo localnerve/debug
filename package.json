@@ -40,14 +40,14 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup",
-    "build:watch": "tsup --watch --sourcemap",
+    "build": "tsdown",
+    "build:watch": "tsdown --watch --sourcemap",
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
     "lint": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
     "dev:example-browser": "cd examples/browser && npm i && npm run build && npm run dev",
     "dev:example-node": "cd examples/node && npm i && DEBUG=* node index.js && cd -",
     "pre-publish": "npm run build && npm test",
-    "test": "node --test ./test/*.test.ts",
+    "test": "node --test --experimental-test-coverage ./test/*.test.ts",
     "ncu": "find . -name 'node_modules' -prune -o -name 'package.json' -execdir ncu -u ';'",
     "size": "size-limit"
   },
@@ -55,9 +55,8 @@
     "@size-limit/preset-small-lib": "^14.0.1",
     "@types/node": "^26.6.2",
     "size-limit": "^14.0.1",
-    "terser": "^5.51.2",
-    "tsup": "^8.5.1",
-    "typescript": "^6.0.3"
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2"
   },
   "prettier": {
     "semi": false
@@ -66,7 +65,7 @@
     {
       "name": "@localnerve/debug",
       "path": "dist/index.js",
-      "limit": "655 B"
+      "limit": "665 B"
     }
   ],
   "allowScripts": {
