@@ -11,11 +11,11 @@
   "dependencies": {
     "@localnerve/debug": "file:../..",
     "debug": "4.4.3",
-    "preact": "^10.29.8"
+    "preact": "^11.2.0"
   },
   "devDependencies": {
-    "sass": "^1.105.0",
+    "sass": "^1.108.2",
     "typescript": "~7.0.2",
-    "vite": "^8.3.1"
+    "vite": "^8.3.8"
   }
 }
